@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{%block content %}
+{% load static %}
+ <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="col-md-12 ">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Product</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <form action="{% url 'savefishdetals' %}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                 {% csrf_token %}
+                    <div class="form-group ">
+                      <label for="fishcat">Name</label>
+                      <select name="fishcategory" id="fishcategory" class="btn btn-sm btn-primary dropdown-toggle">
+                          {% for i in data %}
+                          <option value="{{i.name}}">{{i.name}}</option>
+                          {% endfor %}
+                      </select>
+
+                    </div>
+                    <!--<div class="form-group">
+                      <label for="fishcat">Name</label>
+                      <div class="input-group">
+
+                      <div class="input-group-prepend">
+                        <button name="fishcategory" class="btn btn-sm btn-outline-primary dropdown-toggle" type="button">Select fish category</button>
+                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 46px, 0px);">
+                          {% for i in data %}
+                            <a class="dropdown-item" value="{{i.name}}" href="#">{{i.name}}</a>
+                            {% endfor %}
+                          
+                        </div>
+                      </div>
+                      <input type="text" class="form-control"  name ="fishcategory1" aria-label="Text input with dropdown button">
+                    </div>
+                    </div>-->
+
+                    <div class="form-group">
+                      <label for="proname">Product Name</label>
+                      <input  name="proname" id="proname" type="text" placeholder="Product name" class="form-control">
+
+                    </div>
+
+                      <div class="form-group">
+                      <label for="proprice">Product Price</label>
+                      <input  name="proprice" id="proprice" type="text" placeholder="Product Price" class="form-control">
+
+                    </div>
+                     <div class="form-group">
+                      <label for="proqty">Product Quantity</label>
+                      <input  name="proqty" id="proqty" type="text" placeholder="Product Quantity" class="form-control">
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Image</label>
+                      <input type="file" class="form-control" name="image" id="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+

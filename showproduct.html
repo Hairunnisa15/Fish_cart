@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{%block content %}
+{% load static %}
+<table  style="width:90%" class="table table-striped>
+  <thead class="thead-light">
+  <tr>
+    <th>Category</th>
+    <th>Product Name</th>
+      <th>Product Price</th>
+    <th>Product Quantity</th>
+    <th>Image</th>
+    <th>Edit/Delete</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+  <tr>
+    <td style="white-space:pre-wrap; word-wrap:break-word">{{i.fishcategory}}</td>
+    <td style="white-space:pre-wrap; word-wrap:break-word">{{i.proname}}</td>
+       <td style="white-space:pre-wrap; word-wrap:break-word">{{i.proprice}}</td>
+    <td style="white-space:pre-wrap; word-wrap:break-word">{{i.proqty}}</td>
+    <td><img src="{{i.image.url}}" width="100" height="100"></td>
+<td> <a href="{% url 'editproductbyid' eid=i.id %}"><button type="button" class="btn btn-success">Edit....</button> <a href="{% url 'deleteproductbyid' did=i.id %}"><button type="button" class="btn btn-danger">Delete....</button></a></td>
+
+  </tr>
+
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

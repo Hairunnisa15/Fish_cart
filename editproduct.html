@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{%block content %}
+{% load static %}
+ <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="col-md-12 ">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Product</h4>
+                  <p class="card-description">
+
+                  </p>
+                  {% for i in data %}
+                  <form action="{% url 'updateproductfishdata' uid=i.id %}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                 {% csrf_token %}
+
+                     <div class="form-group ">
+                      <label for="fishcat">Name</label>
+                      <select name="fishcategory" id="fishcategory" class="btn btn-sm btn-primary dropdown-toggle">
+                        {% for j in category %}
+
+                          <option  {% if{{j.name}}== {{i.fishcategory}}  %} selected="selected" {% endif %}value="{{ j.name }}">{{ j.name }}</option>
+                          {% endfor %}
+                      </select>
+
+                    </div>
+                    <div class="form-group">
+                      <label for="proname">Product Name</label>
+                      <input  name="proname" id="proname" value="{{i.proname}}" type="text" placeholder="Product name" class="form-control">
+
+                    </div>
+
+                      <div class="form-group">
+                      <label for="proprice">Product Price</label>
+                      <input  name="proprice" id="proprice" value="{{i.proprice}}"  type="text" placeholder="Product Price" class="form-control">
+
+                    </div>
+                     <div class="form-group">
+                      <label for="proqty">Product Quantity</label>
+                      <input  name="proqty" id="proqty" value="{{i.proqty}}"  type="text" placeholder="Product Quantity" class="form-control">
+
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Image</label>
+                      <input type="file" class="form-control" name="image" id="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+{% endblock %}
+
